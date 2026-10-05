@@ -30,7 +30,7 @@ const STEPS = [
   {
     n: 'step 01', title: 'Install the cask',
     body: 'One package carries the menu-bar app and the `s1` CLI. First run opens a setup wizard — permissions, Cua Driver, keys.',
-    cmd: 'brew tap Matthew-Eucaristo/tap && brew install --cask s1',
+    cmd: 'brew tap Matthew-Eucaristo/tap && brew trust Matthew-Eucaristo/tap; brew install --cask s1',
   },
   {
     n: 'step 02', title: 'Say something',
