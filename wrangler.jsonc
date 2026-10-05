@@ -1,0 +1,11 @@
+// Cloudflare deployment — Workers Static Assets (free tier, recommended
+// over Pages for new projects). `npm run build && npx wrangler deploy`
+// publishes dist/ at https://s1-landingpage.<your-subdomain>.workers.dev
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "s1-landingpage",
+  "compatibility_date": "2025-10-01",
+  "assets": {
+    "directory": "./dist"
+  }
+}
