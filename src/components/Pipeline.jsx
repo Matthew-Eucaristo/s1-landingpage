@@ -4,8 +4,8 @@ import { motion, useInView } from 'framer-motion'
 const STAGES = [
   {
     n: '01', title: 'listen',
-    sub: 'Voice lands as text — on-device, always.',
-    body: 'SpeechAnalyzer on macOS 26 with an SFSpeechRecognizer fallback. Installed app names feed the recognizer automatically, so "open Linear" just lands. Your jargon goes first.',
+    sub: 'Voice lands as text — on-device, always. Interruptible, always.',
+    body: 'SpeechAnalyzer on macOS 26 with an SFSpeechRecognizer fallback, tunable turn-end detection (auto or energy-only VAD, three sensitivities). While s1 works or talks, an echo-cancelled monitor listens back — speak up and it stops. Installed app names feed the recognizer automatically, so "open Linear" just lands.',
     pre: `$ s1 listen
 listening… {hl}"open Notes, write the plan"{hl}
 transcript · en-US · 1.2s · on-device`,
@@ -13,7 +13,7 @@ transcript · en-US · 1.2s · on-device`,
   {
     n: '02', title: 'parse',
     sub: 'A deterministic grammar before any model.',
-    body: 'Known intents — open, type, press, scroll, wait, verify, done — resolve through the shared AX grammar with zero model calls. Fast, replayable, honest about what it will do.',
+    body: 'Known intents — open, type, press, scroll, wait, verify, done, plus window/tab/app control, media keys, double/right click, and find — resolve through the shared AX grammar with zero model calls. Fast, replayable, honest about what it will do.',
     pre: `intent {hl2}open{hl2}  app=com.apple.Notes
 intent {hl2}type{hl2}  "the plan"
 intent {hl2}verify{hl2} text on screen

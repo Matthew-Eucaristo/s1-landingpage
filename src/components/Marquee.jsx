@@ -1,9 +1,12 @@
 const ITEMS = [
   ['voice → action', 'on-device stt'],
+  ['barge-in', 'talk over it'],
   ['deterministic', 'ax grammar'],
+  ['media + window keys', 'no model calls'],
   ['hybrid brain', 's1 + s2'],
   ['safety gates', 'dry-run first'],
   ['plain config', '~/.s1/*.json'],
+  ['provider pills', 'one-click connect'],
   ['local models', 'ollama · mlx'],
   ['cloud optional', 'any openai api'],
   ['memory', 'agent memory repo'],

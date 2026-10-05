@@ -5,19 +5,19 @@ const FEATURES = [
   {
     ic: '🎙️', wide: true,
     title: 'Voice-first, not voice-only',
-    body: 'Hold a hotkey, speak, let go — s1 hears, plans, acts, and shows you what it did. Typing the same command to `s1 run` works identically. Menu-bar app or bare CLI; always-on `s1 serve` if you want it.',
-    mini: 's1 listen · s1 run · s1 serve',
+    body: 'Hold a hotkey, speak, let go — s1 hears, plans, acts, and shows you what it did. Talk over it mid-run to barge in: it aborts at the next step and keeps listening. Typing the same command to `s1 run` works identically. Menu-bar app or bare CLI; always-on `s1 serve` if you want it.',
+    mini: 's1 listen · s1 run · s1 serve · barge-in on',
   },
   {
     ic: '⚙️', half: true,
     title: 'Deterministic core',
-    body: 'A hand-built AX grammar executes known intents with zero model calls — fast, replayable, inspectable. Models are escalation, not the foundation.',
+    body: 'A hand-built AX grammar executes known intents with zero model calls — open, type, click flavors, window + tab control, media keys, find — fast, replayable, inspectable. Models are escalation, not the foundation.',
     mini: 's1 run --policy ax',
   },
   {
     ic: '🧠', half: true,
-    title: 'Three roles, any brain',
-    body: 'Decider (S1 judge), planner (S2), click grounder — each swappable to any OpenAI-compatible endpoint or a local Ollama model. `s1 use ollama-nimble` and you are done.',
+    title: 'Every provider, one list',
+    body: 'Settings lists each provider with a pill per role it covers — S1 judge, vision, S2, STT, TTS — and one Connect click wires them all. Groq, OpenAI, Gemini, xAI, OpenRouter (Claude included), Cloudflare, Ollama, or your own OpenAI-compatible box.',
     mini: '~/.s1/providers.json · s1 use <id>',
   },
   {
