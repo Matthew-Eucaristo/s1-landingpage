@@ -31,15 +31,17 @@ relative `base` so the project path is handled).
 
 ## Deploy — Cloudflare
 
-Workers Static Assets (recommended, free tier):
+Workers Static Assets (recommended, free tier). `wrangler.jsonc` already
+declares `build.command = "npm run build"`, so deploy is one step:
 
 ```bash
-npm run build
-npx wrangler deploy        # uses wrangler.jsonc → https://s1-landingpage.<sub>.workers.dev
+npx wrangler deploy   # builds → uploads dist/ → https://s1-landingpage.<sub>.workers.dev
+# or: npm run deploy
 ```
 
-Or drag `dist/` into a Cloudflare Pages project — build command
-`npm run build`, output dir `dist`.
+Connecting the repo to Cloudflare instead? Point the project at this repo
+and use **build command `npm run build`, output dir `dist`** (Workers
+Builds or Pages — same settings).
 
 ## Sections
 

@@ -1,4 +1,30 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
+
+function Cmd({ text }) {
+  const [copied, setCopied] = useState(false)
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(text)
+    } catch {
+      const ta = document.createElement('textarea')
+      ta.value = text
+      ta.style.cssText = 'position:fixed;opacity:0'
+      document.body.appendChild(ta)
+      ta.select()
+      try { document.execCommand('copy') } catch {}
+      ta.remove()
+    }
+    setCopied(true)
+    setTimeout(() => setCopied(false), 1600)
+  }
+  return (
+    <button type="button" className="cmdline" onClick={copy} title="click to copy">
+      <code><span className="p">$ </span>{text}</code>
+      <span className={`copy-ic${copied ? ' on' : ''}`}>{copied ? 'copied ✓' : 'copy'}</span>
+    </button>
+  )
+}
 
 const STEPS = [
   {
@@ -43,7 +69,7 @@ export default function Install() {
               <span className="num">{s.n}</span>
               <h3>{s.title}</h3>
               <p>{s.body}</p>
-              <code className="cmdline"><span className="p">$ </span>{s.cmd}</code>
+              <Cmd text={s.cmd} />
             </motion.div>
           ))}
         </div>

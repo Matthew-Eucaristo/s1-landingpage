@@ -449,17 +449,34 @@ h2 { font-size: clamp(30px, 4.6vw, 52px); }
 .istep h3 { font-size: 17px; margin: 14px 0 12px; }
 .istep p { font-size: 13.5px; color: var(--text-dim); margin-bottom: 18px; }
 .cmdline {
-  display: block;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  width: 100%;
   font-family: var(--font-mono); font-size: 12.5px;
   background: #07070c;
   border: 1px solid var(--line);
   border-radius: 10px;
   padding: 12px 14px;
   color: var(--text);
-  overflow-x: auto;
-  white-space: nowrap;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.25s;
+}
+.cmdline:hover { border-color: var(--line-2, #3a3a48); }
+.cmdline code {
+  font-family: inherit; color: inherit;
+  overflow-x: auto; white-space: nowrap;
 }
 .cmdline .p { color: var(--cyan); }
+.copy-ic {
+  flex: none;
+  font-family: var(--font-mono); font-size: 11px;
+  color: var(--text-dim);
+  opacity: 0;
+  transition: opacity 0.2s, color 0.2s;
+}
+.cmdline:hover .copy-ic, .copy-ic.on { opacity: 1; }
+.copy-ic.on { color: #4ade80; }
+@media (hover: none) { .copy-ic { opacity: 0.65; } }
 @media (max-width: 880px) { .install-steps { grid-template-columns: 1fr; } }
 
 /* ---------- oss ---------- */
