@@ -5,7 +5,7 @@ const FEATURES = [
   {
     ic: '🎙️', wide: true,
     title: 'Voice-first, not voice-only',
-    body: 'Hold a hotkey, speak, let go — s1 hears, plans, acts, and shows you what it did. Talk over it mid-run to barge in: it aborts at the next step and keeps listening. Typing the same command to `s1 run` works identically. Menu-bar app or bare CLI; always-on `s1 serve` if you want it.',
+    body: 'Hold a hotkey, speak, let go — s1 hears, plans, acts, and shows you what it did in a chat-style feed. Talk over it mid-run to barge in: it aborts at the next step and keeps listening. Typing the same command works identically — in English, Indonesian, or any of 14 supported languages. Menu-bar app or bare CLI; always-on `s1 serve` if you want it.',
     mini: 's1 listen · s1 run · s1 serve · barge-in on',
   },
   {
@@ -17,7 +17,7 @@ const FEATURES = [
   {
     ic: '🧠', half: true,
     title: 'Every provider, one list',
-    body: 'Settings lists each provider with a pill per role it covers — S1 judge, vision, S2, STT, TTS — and one Connect click wires them all. Groq, OpenAI, Gemini, xAI, OpenRouter (Claude included), Cloudflare, Ollama, or your own OpenAI-compatible box.',
+    body: 'Each provider is a card with a pill per role it covers — S1 judge, S2, STT, TTS. One Connect click wires them all; one pasted key unlocks the whole card; connections self-test on open and on every model change. Groq, OpenAI, Gemini, xAI, OpenRouter (Claude included), Cloudflare, Ollama, or your own OpenAI-compatible box.',
     mini: '~/.s1/providers.json · s1 use <id>',
   },
   {

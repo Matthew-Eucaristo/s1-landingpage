@@ -49,8 +49,8 @@ export default function Hero() {
         <span>swift 6</span>
         <span>on-device stt / tts</span>
         <span>ax-first</span>
-        <span>163 tests</span>
-        <span>menu bar + cli</span>
+        <span>176 tests</span>
+        <span>14 languages · chat ui</span>
       </motion.div>
 
       <motion.div className="hero-term" style={{ y: termY }} {...fade(5)}>

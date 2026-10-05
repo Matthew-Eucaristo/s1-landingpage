@@ -11,6 +11,7 @@ const ITEMS = [
   ['cloud optional', 'any openai api'],
   ['memory', 'agent memory repo'],
   ['sandboxed shell', 'anthropic srt'],
+  ['14 languages', 'en + id verified'],
   ['fully open source', 'mit'],
 ]
 

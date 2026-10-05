@@ -29,7 +29,7 @@ const SCRIPTS = [
     cmd: 's1 doctor',
     lines: [
       { t: '  ✓ ~/.s1/config.json · 3 roles configured', c: 'ok' },
-      { t: '  ✓ providers.json · default catalog, 38 presets, 12 families', c: 'ok' },
+      { t: '  ✓ providers.json · default catalog, 32 presets, 12 families', c: 'ok' },
       { t: '  ✓ convert.json · valid (2 custom units)', c: 'ok' },
       { t: '  ✓ cua-driver · installed at ~/.local/bin/cua-driver', c: 'ok' },
       { t: '  ✓ memory.md · 14 facts, 3 topic files', c: 'ok' },

@@ -31,7 +31,7 @@ verify → {hl3}on-screen ✓{hl3}`,
   {
     n: '04', title: 'act',
     sub: 'Accessibility-first control. Screenshots only when needed.',
-    body: 's1 reads the AX tree and acts on real UI elements — buttons, fields, menus — not pixels. A click grounder or VLM only fires for targets with no accessibility label. Every step is verified and logged.',
+    body: 's1 reads the AX tree and acts on real UI elements — buttons, fields, menus — not pixels. Screenshots are taken only when needed for verification, never as the primary sense. Every step is verified and logged.',
     pre: `AXButton "Save" → press()        {hl3}✓{hl3}
 AXTextField title → set(v)      {hl3}✓{hl3}
 canvas (no label) → grounder    {hl3}612, 384{hl3}
