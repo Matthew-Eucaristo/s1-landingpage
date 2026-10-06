@@ -32,6 +32,8 @@ Providers: TypeSafe (Jev, Judge), OpenCode Go (DeepSeek V4.1 Flash, Reasoner), O
 
 Seeing the screen is a capability, not a separate model. Vision is on by default. If the Judge can read images it receives screenshots; otherwise the Reasoner receives one with each step it takes over; if neither can, s1 works from the macOS accessibility tree only. A single "Let models see the screen" switch disables screenshots entirely.
 
+Web search follows the Reasoner: models that search by themselves (Groq Compound, OpenAI search models, OpenRouter :online, Perplexity Sonar) are used as they are; OpenAI models use OpenAI's web_search tool and OpenRouter models use OpenRouter's (both billed per search); other providers have no web access and the Reasoner says when an answer may be out of date. Each search is a visible step; one switch turns it off.
+
 ## Features
 
 - Voice from anywhere: Shift-Shift or Control-Option-Space wakes the listener; idle uses no microphone and no CPU.
