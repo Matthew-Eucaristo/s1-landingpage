@@ -34,7 +34,7 @@ export default function Hero() {
 
         <motion.div className="hero-stage rise rise-4" ref={stage} style={{ y }}>
           <Pill />
-          <img className="hero-shot" src="./shots/app.png" width="1321" height="861"
+          <img className="hero-shot" src="./shots/app.png" width="2360" height="1760"
                alt="The s1 window: run history in the sidebar and a conversation where each spoken command shows its steps and result"
                fetchpriority="high" />
         </motion.div>

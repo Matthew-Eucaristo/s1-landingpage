@@ -28,7 +28,7 @@ export default function Features() {
           <Cell className="c-evidence" i={0} title="Every step is evidence."
             body="Each run keeps what s1 did, which brain decided it and why, plus any screenshots. Search it all in the history.">
             <div className="shot-crop">
-              <img src="./shots/app.png" alt="" width="1321" height="861" loading="lazy" />
+              <img src="./shots/app.png" alt="" width="2360" height="1760" loading="lazy" />
             </div>
           </Cell>
 
@@ -51,7 +51,7 @@ export default function Features() {
           </Cell>
 
           <Cell className="c-lang" i={3} title="Speaks your language."
-            body="On-device speech in 14 languages. The grammar is fluent in English and Indonesian; your reasoner reads the rest.">
+            body="On-device speech in 14 languages. The grammar is fluent in English and Indonesian; your Reasoner reads the rest.">
             <div className="lang">
               <div className="lang-roll">
                 <span>open Notes</span><span>buka Notes</span><span>abre Notas</span>

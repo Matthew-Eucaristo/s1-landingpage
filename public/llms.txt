@@ -1,17 +1,19 @@
 # s1
 
-> s1 is a free, open-source (MIT), voice-first agent for macOS 26+. You double-tap Shift (or press Control-Option-Space), say what you want done, and s1 operates your apps through the macOS Accessibility API, logging every step. A deterministic grammar handles everyday commands with no AI model; an optional judge model (System 1) checks each step and an optional reasoning LLM (System 2) handles anything new. Every action passes a safety gate.
+> s1 is a free, open-source (MIT), voice-first agent for macOS 26+. You double-tap Shift (or press Control-Option-Space), say what you want done, and s1 operates your apps through the macOS Accessibility API, logging every step. A built-in grammar handles everyday commands with no AI model. Two optional models sit on top: the Judge (System 1), a fast decision model that checks each step, and the Reasoner (System 2), an LLM that handles anything new. Every action passes a safety gate.
 
 Key facts:
 
 - Platform: macOS 26 or later, Apple silicon. Native Swift 6 / SwiftUI app plus the `s1` command-line tool in one package.
 - Install: `brew tap Matthew-Eucaristo/tap && brew trust Matthew-Eucaristo/tap && brew install --cask s1`, or download from GitHub Releases.
 - Price: free. License: MIT. Author: Matthew Eucaristo.
-- Models: one model per job, all optional. Roles are `judge` (System 1 decision model: TypeSafe Jev, Liquid AI d1, Cloudflare Clef, Ollama nimble), `reasoner` (System 2 LLM: OpenCode Go, OpenAI, OpenRouter including Claude, Groq, Google Gemini, xAI, DeepSeek, Cloudflare, Ollama, LM Studio, any OpenAI-compatible server), `transcribe` and `speak` (cloud voice; default is on-device Apple speech).
-- Vision: screenshots go to the judge if it can read images, otherwise to the reasoner when a step needs it; if neither can, s1 uses the accessibility tree only. One switch turns screen sharing off.
+- Models: one model per job, all optional. Roles are `judge` (the Judge, System 1, a decision model: TypeSafe Jev, Liquid AI d1, Cloudflare Clef, Ollama nimble), `reasoner` (the Reasoner, System 2, an LLM: OpenCode Go, OpenAI, OpenRouter including Claude, Groq, Google Gemini, xAI, DeepSeek, Cloudflare, Ollama, LM Studio, any OpenAI-compatible server), `transcribe` and `speak` (cloud voice; default is on-device Apple speech).
+- Vision (on by default): screenshots go to the Judge if it can read images, otherwise to the Reasoner when a step needs it; if neither can, s1 uses the accessibility tree only. One switch turns screen sharing off.
 - Safety: password fields, credentials, purchases and irreversible actions always wait for the user. Talking over s1 interrupts it.
 - Privacy: speech is recognized on-device; API keys are stored in the macOS Keychain; no telemetry; every run is saved locally under ~/.s1/artifacts.
 - Languages: on-device speech in 14 languages; English and Indonesian verified end to end.
+- Configuration: great defaults, all changeable in Settings, with `s1 use`, in ~/.s1/config.json, or with `S1_*` environment variables. App accent is s1 orange by default or follows the macOS accent.
+- Extensibility: any OpenAI-compatible model server, custom Judge/Reasoner in Swift, voice-saved skills, Shortcuts, and the CLI. A plugin system is on the roadmap (not available yet).
 
 ## Docs
 

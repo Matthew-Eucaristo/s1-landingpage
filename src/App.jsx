@@ -5,6 +5,7 @@ import LogoMarquee from './components/LogoMarquee.jsx'
 import HowItWorks from './components/HowItWorks.jsx'
 import Features from './components/Features.jsx'
 import Models from './components/Models.jsx'
+import Configure from './components/Configure.jsx'
 import Privacy from './components/Privacy.jsx'
 import Cli from './components/Cli.jsx'
 import Faq from './components/Faq.jsx'
@@ -23,6 +24,7 @@ export default function App() {
         <HowItWorks />
         <Features />
         <Models />
+        <Configure />
         <Privacy />
         <Cli />
         <Faq />

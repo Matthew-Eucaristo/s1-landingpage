@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer className="foot">
       <div className="wrap foot-inner">
-        <a className="foot-brand" href="#top"><img src="./icon.png" alt="" width="20" height="20" loading="lazy" />s1</a>
+        <a className="foot-brand" href="#top"><img src="./icon-192.png" alt="" width="20" height="20" loading="lazy" />s1</a>
         <nav aria-label="Footer">
           <a href={REPO} target="_blank" rel="noreferrer">GitHub</a>
           <a href={`${REPO}/blob/main/CHANGELOG.md`} target="_blank" rel="noreferrer">Changelog</a>

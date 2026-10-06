@@ -26,8 +26,10 @@
     <meta name="twitter:description" content="A free, open-source voice agent for macOS." />
     <meta name="twitter:image" content="https://s1-mac.pages.dev/og.png" />
 
-    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
-    <link rel="apple-touch-icon" href="./icon.png" />
+    <link rel="icon" href="./favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
     <link rel="manifest" href="./site.webmanifest" />
     <link rel="alternate" type="text/plain" title="LLM summary" href="./llms.txt" />
     <link rel="preload" as="image" href="./shots/app.png" fetchpriority="high" />
@@ -40,24 +42,25 @@
             "@type": "SoftwareApplication",
             "@id": "https://s1-mac.pages.dev/#app",
             "name": "s1",
-            "description": "A free, open-source, voice-first agent for macOS. A deterministic grammar handles everyday commands with no model; a judge model can check each step (System 1) and a reasoning LLM handles anything new (System 2). Every action passes a safety gate and every run is logged.",
+            "description": "A free, open-source, voice-first agent for macOS. A built-in grammar handles everyday commands with no model; an optional Judge (System 1) checks each step and an optional Reasoner (System 2), an LLM you choose, handles anything new. Every action passes a safety gate and every run is logged.",
             "applicationCategory": "UtilitiesApplication",
             "operatingSystem": "macOS 26 or later",
-            "softwareVersion": "0.3.0",
+            "softwareVersion": "0.3.1",
             "license": "https://opensource.org/licenses/MIT",
             "isAccessibleForFree": true,
             "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
             "downloadUrl": "https://github.com/Matthew-Eucaristo/s1/releases/latest",
             "installUrl": "https://github.com/Matthew-Eucaristo/s1#install",
             "screenshot": "https://s1-mac.pages.dev/shots/app.png",
-            "image": "https://s1-mac.pages.dev/icon.png",
+            "image": "https://s1-mac.pages.dev/icon-512.png",
             "url": "https://s1-mac.pages.dev/",
             "sameAs": ["https://github.com/Matthew-Eucaristo/s1"],
             "author": { "@type": "Person", "name": "Matthew Eucaristo", "url": "https://github.com/Matthew-Eucaristo" },
             "featureList": [
               "Voice commands from anywhere with a double-tap of Shift",
               "Deterministic grammar for everyday commands, no model needed",
-              "Optional System 1 judge model and System 2 reasoning LLM from any provider",
+              "Optional Judge (System 1) and Reasoner (System 2) models from any provider",
+              "Great defaults, every one of them configurable",
               "Screenshots only to models that can read them, or none",
               "Safety gate in front of every action",
               "Searchable history of every run with evidence",

@@ -17,8 +17,8 @@ export default function Models() {
         <motion.div className="models-head" {...reveal()}>
           <h2 id="models-title" className="sec-title">One model per job.<br />Bring any. Or none.</h2>
           <p className="sec-sub">
-            Connect a provider once with one key, kept in your Keychain. Pick a judge for System 1, a
-            reasoner for System 2, and cloud voices if you want them.
+            Connect a provider once with one key, kept in your Keychain. It fills in a recommended
+            Judge (System 1) and Reasoner (System 2); swap either, or add cloud voices, anytime.
           </p>
         </motion.div>
 
@@ -65,7 +65,7 @@ export default function Models() {
         <motion.ol className="vision-rule" aria-label="Who sees the screen" {...reveal(2)}>
           <li><Eye size={18} /><span><b>Judge can see?</b> It gets the screenshots.</span></li>
           <li aria-hidden="true" className="vr-arrow"><ArrowRight size={16} /></li>
-          <li><Eye size={18} /><span><b>Otherwise the reasoner?</b> It sees each step it takes over.</span></li>
+          <li><Eye size={18} /><span><b>Otherwise the Reasoner?</b> It sees each step it takes over.</span></li>
           <li aria-hidden="true" className="vr-arrow"><ArrowRight size={16} /></li>
           <li><TreeStructure size={18} /><span><b>Neither?</b> s1 reads the accessibility tree only.</span></li>
         </motion.ol>

@@ -27,7 +27,7 @@ export default function Install() {
     <section className="sec" id="install" aria-labelledby="install-title">
       <div className="wrap">
         <motion.div className="install" {...reveal()}>
-          <img className="install-icon" src="./icon.png" alt="" width="88" height="88" loading="lazy" />
+          <img className="install-icon" src="./icon-192.png" alt="" width="88" height="88" loading="lazy" />
           <h2 id="install-title" className="sec-title">Talking to your Mac<br />in under a minute.</h2>
           <CopyCmd />
           <p className="install-alt">

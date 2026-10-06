@@ -9,11 +9,11 @@ Requires: macOS 26 or later, Apple silicon
 
 s1 is a voice-first agent for the Mac. Double-tap Shift anywhere (or press Control-Option-Space), say what you want done, and s1 does it in your apps while showing every step. A status pill drops from the camera notch while it listens or works, and you can interrupt it at any time by talking over it.
 
-It thinks at two speeds:
+Terminology: System 1 is the Judge and System 2 is the Reasoner. Both are optional models; the built-in grammar works without either.
 
-- System 1 is a deterministic grammar that turns everyday commands into steps and runs them instantly with no model: opening apps, typing, keyboard shortcuts, window and tab control, media keys, clicking things by name. It understands English and Indonesian.
-- An optional judge (a System One API decision model) checks each System 1 step against the goal and can only lower confidence, never act on its own.
-- System 2 is an optional reasoning LLM. When the grammar doesn't know a step or confidence is low, the step escalates to it with the screen state and the run so far. It plans, answers questions, or hands plain sub-goals back to System 1.
+- The built-in grammar turns everyday commands into steps and runs them instantly with no model: opening apps, typing, keyboard shortcuts, window and tab control, media keys, clicking things by name. It understands English and Indonesian.
+- The Judge (System 1) is an optional, fast decision model (System One API) that checks each step against the goal. It can only lower confidence, never act on its own.
+- The Reasoner (System 2) is an optional LLM. When the grammar doesn't know a step or confidence is low, the step escalates to it with the screen state and the run so far. It plans, answers questions, or hands plain sub-goals back to the grammar.
 
 A safety gate classifies every action (read, reversible, irreversible). Credentials, typing into password fields, purchases and irreversible actions always stop and wait for the user.
 
@@ -23,14 +23,14 @@ s1 uses one model per job, and every job is optional:
 
 | Role | Job | Default when unset |
 |---|---|---|
-| judge | System 1 decision model, checks every step | off (grammar only) |
-| reasoner | System 2 LLM for anything new | off |
+| judge | Judge (System 1): decision model, checks every step | off (grammar only) |
+| reasoner | Reasoner (System 2): LLM for anything new | off |
 | transcribe | cloud speech-to-text | on-device Apple speech |
 | speak | cloud text-to-speech | Apple voices |
 
-Providers: TypeSafe (Jev judge), OpenCode Go (DeepSeek V4.1 Flash reasoner), OpenAI, OpenRouter (every major model, Claude included), Groq, Google Gemini, xAI, DeepSeek, Liquid AI (d1 judge), Cloudflare Workers AI (Clef judges, Llama), Ollama and LM Studio (local), and any OpenAI-compatible server. A provider is one account or server with one API key, stored in the macOS Keychain. Connecting a provider fills an empty judge or reasoner with its recommended model; voices stay on-device until chosen.
+Providers: TypeSafe (Jev, Judge), OpenCode Go (DeepSeek V4.1 Flash, Reasoner), OpenAI, OpenRouter (every major model, Claude included), Groq, Google Gemini, xAI, DeepSeek, Liquid AI (d1, Judge), Cloudflare Workers AI (Clef Judges, Llama Reasoners), Ollama and LM Studio (local), and any OpenAI-compatible server. A provider is one account or server with one API key, stored in the macOS Keychain. Connecting a provider fills an empty Judge or Reasoner with its recommended model; voices stay on-device until chosen.
 
-Seeing the screen is a capability, not a separate model. If the judge can read images it receives screenshots; otherwise the reasoner receives one with each step it takes over; if neither can, s1 works from the macOS accessibility tree only. A single "Let models see the screen" switch disables screenshots entirely.
+Seeing the screen is a capability, not a separate model. Vision is on by default. If the Judge can read images it receives screenshots; otherwise the Reasoner receives one with each step it takes over; if neither can, s1 works from the macOS accessibility tree only. A single "Let models see the screen" switch disables screenshots entirely.
 
 ## Features
 
@@ -42,6 +42,22 @@ Seeing the screen is a capability, not a separate model. If the judge can read i
 - Memory and skills: "remember that my editor is Zed" and "save that as a skill called morning setup" are plain files in ~/.s1.
 - Siri and Shortcuts: "Ask s1 to ..." and "Wake s1" via App Intents.
 - Languages: on-device speech recognition in 14 languages.
+
+## Defaults and configuration
+
+s1 ships with sensible defaults and every one can change:
+
+- Models: none needed; connecting a provider fills in its recommended Judge and Reasoner. Change them in Settings > Models, with `s1 use`, in ~/.s1/config.json, or with `S1_JUDGE` / `S1_REASONER`.
+- Vision: on for models that can read images. Turn off with the "Let models see the screen" switch, `"vision": false`, or `S1_VISION=off`.
+- Voice: on-device speech and Apple voices; cloud transcription and voices are opt-in.
+- Appearance: s1 orange accent by default, or follow the macOS accent color (Settings > General > Appearance).
+
+## Extending s1
+
+- Any OpenAI-compatible model server through the Custom provider (vLLM, MLX, Speaches, your own shim).
+- Your own Judge or Reasoner as a Swift `Policy` or `Reasoner` (docs/adding-a-brain.md).
+- Skills saved by voice, launcher snippets, Siri and Shortcuts via App Intents, and the `s1` CLI for scripting.
+- A plugin system for new actions, providers and skills is on the roadmap; it is not available yet.
 
 ## Install
 
@@ -56,7 +72,7 @@ Or download S1.app from https://github.com/Matthew-Eucaristo/s1/releases/latest.
 - `s1 run --goal "open Notes"`: run a command (`--dry-run` touches nothing)
 - `s1 listen`, `s1 serve`: one voice command; the always-on listener (`--install` for launchd)
 - `s1 providers`, `s1 connect <provider>`, `s1 disconnect <provider>`: manage providers
-- `s1 use <role> <provider/model|off>`: assign a model to judge, reasoner, transcribe or speak
+- `s1 use <role> <provider/model|off>`: assign a model to judge (System 1), reasoner (System 2), transcribe or speak
 - `s1 models`, `s1 pull <model>`: see choices; download an Ollama model
 - `s1 config`, `s1 doctor`: show the resolved setup; validate every file in ~/.s1
 - `s1 status`, `s1 stop`, `s1 clean`: listener state, stop everything, delete run history
@@ -71,10 +87,16 @@ Speech recognition runs on the Mac. Audio leaves only if you choose a cloud tran
 ## FAQ
 
 Q: Do I need an AI model or API key?
-A: No. The grammar handles everyday commands without any model. Add a judge or reasoner when you want them.
+A: No. The built-in grammar handles everyday commands without any model. Add a Judge (System 1) or Reasoner (System 2) when you want them.
 
 Q: Is it safe?
-A: Every action passes a safety gate first, and password fields, credentials, purchases and irreversible actions wait for you. The judge can only add caution.
+A: Every action passes a safety gate first, and password fields, credentials, purchases and irreversible actions wait for you. The Judge can only add caution.
+
+Q: What are System 1 and System 2?
+A: System 1 is the Judge, a fast decision model that checks every step. System 2 is the Reasoner, an LLM for anything new. Both are optional.
+
+Q: Can I change the defaults?
+A: Yes, every one: models, vision, voices and accent color are settings, and models also live in ~/.s1/config.json and the CLI.
 
 Q: Does it work offline?
 A: The grammar, on-device speech and local models (Ollama, LM Studio) work without internet.

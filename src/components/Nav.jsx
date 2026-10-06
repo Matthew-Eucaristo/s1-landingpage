@@ -21,7 +21,7 @@ export default function Nav() {
     <header className="nav">
       <nav className={`nav-pill glass ${solid ? 'is-solid' : ''}`} aria-label="Main">
         <a href="#top" className="nav-brand" aria-label="s1 home">
-          <img src="./icon.png" alt="" width="24" height="24" />
+          <img src="./icon-192.png" alt="" width="24" height="24" />
           <span>s1</span>
         </a>
         <div className="nav-links">
