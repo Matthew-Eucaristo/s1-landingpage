@@ -15,9 +15,10 @@ hero uses a real screenshot of S1.app (taken in the app's screenshot mode,
 |---|---|
 | `Hero` | Real app screenshot with the notch pill acting out a command (Motion layout springs) |
 | `LogoMarquee` | Official provider wordmarks, the page's only marquee |
-| `HowItWorks` | Pinned scroll story over a live pipeline diagram (grammar, judge, reasoner, vision) |
+| `HowItWorks` | Pinned scroll story over a live pipeline diagram (grammar, Judge = System 1, Reasoner = System 2, vision) |
 | `Features` | Six-cell bento, CSS-animated visuals |
 | `Models` | Providers (official marks) to roles, plus the "who sees the screen" rule |
+| `Configure` | Defaults that change one row at a time, and the ways to extend s1 (plugins marked roadmap) |
 | `Privacy`, `Cli`, `Faq`, `Install` | Statement, real CLI output replayed with animejs, FAQ, install |
 
 Every animation honours `prefers-reduced-motion`; the hero entrance is pure
