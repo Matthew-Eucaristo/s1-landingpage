@@ -12,7 +12,7 @@ s1 is a voice-first agent for the Mac. Double-tap Shift anywhere (or press Contr
 Terminology: System 1 is the Judge and System 2 is the Reasoner. Both are optional models; the built-in grammar works without either.
 
 - The built-in grammar turns everyday commands into steps and runs them instantly with no model: opening apps, typing, keyboard shortcuts, window and tab control, media keys, clicking things by name. It understands English and Indonesian.
-- The Judge (System 1) is an optional, fast decision model (System One API) that checks each step against the goal. It can only lower confidence, never act on its own.
+- The Judge (System 1) is an optional, fast decision model (System One API). It answers typed questions, never writes plans: when several controls match it picks one, when the grammar's match is fuzzy it scores the step, and after typing or clicking it checks the goal really happened. If it reads images it sees the screen for those questions only. It can only lower confidence, never act on its own.
 - The Reasoner (System 2) is an optional LLM. When the grammar doesn't know a step or confidence is low, the step escalates to it with the screen state and the run so far. It plans, answers questions, or hands plain sub-goals back to the grammar.
 
 A safety gate classifies every action (read, reversible, irreversible). Credentials, typing into password fields, purchases and irreversible actions always stop and wait for the user.
@@ -23,7 +23,7 @@ s1 uses one model per job, and every job is optional:
 
 | Role | Job | Default when unset |
 |---|---|---|
-| judge | Judge (System 1): decision model, checks every step | off (grammar only) |
+| judge | Judge (System 1): decision model, picks targets and checks results | off (grammar only) |
 | reasoner | Reasoner (System 2): LLM for anything new | off |
 | transcribe | cloud speech-to-text | on-device Apple speech |
 | speak | cloud text-to-speech | Apple voices |
@@ -93,7 +93,7 @@ Q: Is it safe?
 A: Every action passes a safety gate first, and password fields, credentials, purchases and irreversible actions wait for you. The Judge can only add caution.
 
 Q: What are System 1 and System 2?
-A: System 1 is the Judge, a fast decision model that checks every step. System 2 is the Reasoner, an LLM for anything new. Both are optional.
+A: System 1 is the Judge, a fast decision model that picks targets and checks results. System 2 is the Reasoner, an LLM that plans anything new into plain steps for System 1. Both are optional.
 
 Q: Can I change the defaults?
 A: Yes, every one: models, vision, voices and accent color are settings, and models also live in ~/.s1/config.json and the CLI.

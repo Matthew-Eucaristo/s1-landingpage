@@ -1,6 +1,6 @@
 # s1
 
-> s1 is a free, open-source (MIT), voice-first agent for macOS 26+. You double-tap Shift (or press Control-Option-Space), say what you want done, and s1 operates your apps through the macOS Accessibility API, logging every step. A built-in grammar handles everyday commands with no AI model. Two optional models sit on top: the Judge (System 1), a fast decision model that checks each step, and the Reasoner (System 2), an LLM that handles anything new. Every action passes a safety gate.
+> s1 is a free, open-source (MIT), voice-first agent for macOS 26+. You double-tap Shift (or press Control-Option-Space), say what you want done, and s1 operates your apps through the macOS Accessibility API, logging every step. A built-in grammar handles everyday commands with no AI model. Two optional models sit on top: the Judge (System 1), a fast decision model that picks targets and checks results, and the Reasoner (System 2), an LLM that handles anything new. Every action passes a safety gate.
 
 Key facts:
 

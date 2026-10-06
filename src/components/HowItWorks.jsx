@@ -15,15 +15,15 @@ const CHAPTERS = [
   },
   {
     k: 'Judge',
-    title: 'A second opinion on every step.',
-    body: 'System 1 is the Judge: a small, fast decision model that checks each step against your goal. Does it move forward, is it repeating a failure? It can only add caution.',
+    title: 'A second opinion where it counts.',
+    body: 'System 1 is the Judge: a small, fast decision model. Two Send buttons? It picks the right one. Typed something? It checks the goal really happened. Exact steps stay instant, and it can only add caution.',
     nodes: ['you', 's1', 'judge', 'gate', 'act', 'log'],
     edges: ['you-s1', 's1-judge', 's1-gate', 'gate-act', 'act-log'],
   },
   {
     k: 'Reasoner',
     title: 'Real reasoning when it’s new.',
-    body: 'System 2 is the Reasoner: the LLM you pick. When the grammar doesn’t know a command or the Judge is unsure, it plans and hands plain steps back.',
+    body: 'System 2 is the Reasoner: the LLM you pick. When the grammar doesn’t know a command or the Judge is unsure, it plans the task into plain steps and System 1 runs them.',
     nodes: ['you', 's1', 'judge', 's2', 'gate', 'act', 'log'],
     edges: ['you-s1', 's1-judge', 'judge-s2', 's2-gate', 'gate-act', 'act-log'],
   },
