@@ -2,23 +2,89 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>s1 — your mac, on voice</title>
-    <meta name="description" content="s1 is an open-source, voice-first agent for macOS. Deterministic where it can be, intelligent where it must be. Local-first, fully open source — MIT." />
-    <meta property="og:title" content="s1 — your mac, on voice" />
-    <meta property="og:description" content="An open-source voice-first agent for macOS. On-device speech, accessibility-first control, three-role brains — MIT licensed." />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>s1: the open-source voice agent for macOS</title>
+    <meta name="description" content="s1 is a free, open-source voice agent for macOS. Double-tap Shift, say what you want done, and watch every step. Works with no model, or with any model you choose." />
+    <link rel="canonical" href="https://s1-mac.pages.dev/" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="author" content="Matthew Eucaristo" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#0c0c0d" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f6f6f5" media="(prefers-color-scheme: light)" />
+
     <meta property="og:type" content="website" />
-    <meta name="theme-color" content="#050507" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..800;1,14..32,400..700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <meta property="og:site_name" content="s1" />
+    <meta property="og:url" content="https://s1-mac.pages.dev/" />
+    <meta property="og:title" content="s1: say it, your Mac does it" />
+    <meta property="og:description" content="A free, open-source voice agent for macOS. Instant for everyday commands, any model you choose for the rest, a safety gate in front of every step." />
+    <meta property="og:image" content="https://s1-mac.pages.dev/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="s1: Say it. Your Mac does it." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="s1: say it, your Mac does it" />
+    <meta name="twitter:description" content="A free, open-source voice agent for macOS." />
+    <meta name="twitter:image" content="https://s1-mac.pages.dev/og.png" />
+
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="apple-touch-icon" href="./icon.png" />
+    <link rel="manifest" href="./site.webmanifest" />
+    <link rel="alternate" type="text/plain" title="LLM summary" href="./llms.txt" />
+    <link rel="preload" as="image" href="./shots/app.png" fetchpriority="high" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "SoftwareApplication",
+            "@id": "https://s1-mac.pages.dev/#app",
+            "name": "s1",
+            "description": "A free, open-source, voice-first agent for macOS. A deterministic grammar handles everyday commands with no model; a judge model can check each step (System 1) and a reasoning LLM handles anything new (System 2). Every action passes a safety gate and every run is logged.",
+            "applicationCategory": "UtilitiesApplication",
+            "operatingSystem": "macOS 26 or later",
+            "softwareVersion": "0.3.0",
+            "license": "https://opensource.org/licenses/MIT",
+            "isAccessibleForFree": true,
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+            "downloadUrl": "https://github.com/Matthew-Eucaristo/s1/releases/latest",
+            "installUrl": "https://github.com/Matthew-Eucaristo/s1#install",
+            "screenshot": "https://s1-mac.pages.dev/shots/app.png",
+            "image": "https://s1-mac.pages.dev/icon.png",
+            "url": "https://s1-mac.pages.dev/",
+            "sameAs": ["https://github.com/Matthew-Eucaristo/s1"],
+            "author": { "@type": "Person", "name": "Matthew Eucaristo", "url": "https://github.com/Matthew-Eucaristo" },
+            "featureList": [
+              "Voice commands from anywhere with a double-tap of Shift",
+              "Deterministic grammar for everyday commands, no model needed",
+              "Optional System 1 judge model and System 2 reasoning LLM from any provider",
+              "Screenshots only to models that can read them, or none",
+              "Safety gate in front of every action",
+              "Searchable history of every run with evidence",
+              "Launcher, dictation and a command-line tool"
+            ]
+          },
+          {
+            "@type": "SoftwareSourceCode",
+            "name": "s1",
+            "codeRepository": "https://github.com/Matthew-Eucaristo/s1",
+            "programmingLanguage": "Swift",
+            "license": "https://opensource.org/licenses/MIT",
+            "targetProduct": { "@id": "https://s1-mac.pages.dev/#app" }
+          },
+          {
+            "@type": "WebSite",
+            "name": "s1",
+            "url": "https://s1-mac.pages.dev/",
+            "inLanguage": "en"
+          }
+        ]
+      }
+    </script>
+    <!--faq-ld-->
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"><!--app--></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

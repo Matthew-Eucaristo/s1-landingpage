@@ -1,78 +1,48 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import { Check, Copy } from '@phosphor-icons/react'
+import { BREW, REPO } from '../content.js'
+import { copyText, reveal } from '../lib.js'
 
-function Cmd({ text }) {
-  const [copied, setCopied] = useState(false)
-  const copy = async () => {
-    try {
-      await navigator.clipboard.writeText(text)
-    } catch {
-      const ta = document.createElement('textarea')
-      ta.value = text
-      ta.style.cssText = 'position:fixed;opacity:0'
-      document.body.appendChild(ta)
-      ta.select()
-      try { document.execCommand('copy') } catch {}
-      ta.remove()
-    }
-    setCopied(true)
-    setTimeout(() => setCopied(false), 1600)
-  }
+function CopyCmd() {
+  const [done, setDone] = useState(false)
   return (
-    <button type="button" className="cmdline" onClick={copy} title="click to copy">
-      <code><span className="p">$ </span>{text}</code>
-      <span className={`copy-ic${copied ? ' on' : ''}`}>{copied ? 'copied ✓' : 'copy'}</span>
+    <button type="button" className="copy" aria-label="Copy the Homebrew install command" onClick={async () => {
+      await copyText(BREW); setDone(true); setTimeout(() => setDone(false), 1600)
+    }}>
+      <code><span className="t-p">$</span> brew install --cask s1</code>
+      <span className={`copy-ic ${done ? 'on' : ''}`}>{done ? <Check size={16} weight="bold" /> : <Copy size={16} />}</span>
     </button>
   )
 }
 
 const STEPS = [
-  {
-    n: 'step 01', title: 'Install the cask',
-    body: 'One package carries the menu-bar app and the `s1` CLI. First run opens a setup wizard — permissions, Cua Driver, keys.',
-    cmd: 'brew tap Matthew-Eucaristo/tap && brew trust Matthew-Eucaristo/tap; brew install --cask s1',
-  },
-  {
-    n: 'step 02', title: 'Say something',
-    body: 'Hold the hotkey and speak — or type it. "open Notes, write todo: ship the site". Dry-run anything first if you want proof.',
-    cmd: 's1 listen   # or: s1 run "open Notes, type hello"',
-  },
-  {
-    n: 'step 03', title: 'Make it yours',
-    body: 'Point the three roles at local Ollama models, add a preset to providers.json, teach it memory with plain sentences.',
-    cmd: 's1 use ollama-nimble && s1 doctor',
-  },
+  ['Install', 'One cask: the app, with the s1 command on your PATH.'],
+  ['Allow Accessibility', 'Setup walks you through it. It’s the only permission s1 needs.'],
+  ['Double-tap ⇧', 'Say “open Notes”. Connect a model later, when you want more.'],
 ]
 
 export default function Install() {
   return (
-    <section className="sec" id="install">
+    <section className="sec" id="install" aria-labelledby="install-title">
       <div className="wrap">
-        <div className="sec-head">
-          <span className="kicker">install</span>
-          <h2>three commands<br />to a talking mac.</h2>
-          <p className="sub">
-            Homebrew is the recommended path — GUI + CLI in one cask, real
-            signatures, no quarantine dance. Building from source works too.
+        <motion.div className="install" {...reveal()}>
+          <img className="install-icon" src="./icon.png" alt="" width="88" height="88" loading="lazy" />
+          <h2 id="install-title" className="sec-title">Talking to your Mac<br />in under a minute.</h2>
+          <CopyCmd />
+          <p className="install-alt">
+            Or download the app from <a href={`${REPO}/releases/latest`} target="_blank" rel="noreferrer">GitHub Releases</a>.
+            Free and MIT licensed. macOS 26 or later.
           </p>
-        </div>
-        <div className="install-steps">
-          {STEPS.map((s, i) => (
-            <motion.div
-              key={s.n}
-              className="istep"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.7, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <span className="num">{s.n}</span>
-              <h3>{s.title}</h3>
-              <p>{s.body}</p>
-              <Cmd text={s.cmd} />
-            </motion.div>
-          ))}
-        </div>
+          <ol className="install-steps">
+            {STEPS.map(([t, d], i) => (
+              <motion.li key={t} {...reveal(i + 1)}>
+                <h3>{t}</h3>
+                <p>{d}</p>
+              </motion.li>
+            ))}
+          </ol>
+        </motion.div>
       </div>
     </section>
   )

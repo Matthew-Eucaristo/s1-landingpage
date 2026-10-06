@@ -1,25 +1,34 @@
+import { MotionConfig } from 'framer-motion'
 import Nav from './components/Nav.jsx'
 import Hero from './components/Hero.jsx'
-import Marquee from './components/Marquee.jsx'
-import Pipeline from './components/Pipeline.jsx'
-import Bento from './components/Bento.jsx'
-import Config from './components/Config.jsx'
+import LogoMarquee from './components/LogoMarquee.jsx'
+import HowItWorks from './components/HowItWorks.jsx'
+import Features from './components/Features.jsx'
+import Models from './components/Models.jsx'
+import Privacy from './components/Privacy.jsx'
+import Cli from './components/Cli.jsx'
+import Faq from './components/Faq.jsx'
 import Install from './components/Install.jsx'
-import Oss from './components/Oss.jsx'
 import Footer from './components/Footer.jsx'
 
 export default function App() {
   return (
-    <>
+    // "user": every Motion animation honours prefers-reduced-motion.
+    <MotionConfig reducedMotion="user">
+      <a className="skip" href="#main">Skip to content</a>
       <Nav />
-      <Hero />
-      <Marquee />
-      <Pipeline />
-      <Bento />
-      <Config />
-      <Install />
-      <Oss />
+      <main id="main">
+        <Hero />
+        <LogoMarquee />
+        <HowItWorks />
+        <Features />
+        <Models />
+        <Privacy />
+        <Cli />
+        <Faq />
+        <Install />
+      </main>
       <Footer />
-    </>
+    </MotionConfig>
   )
 }

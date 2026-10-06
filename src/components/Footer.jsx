@@ -1,13 +1,21 @@
+import { REPO } from '../content.js'
+
 export default function Footer() {
   return (
-    <footer>
-      <div className="wrap foot">
-        <span className="nav-logo" style={{ fontSize: 15 }}><span className="dot" />s1</span>
-        <span>MIT © Matthew Eucaristo</span>
-        <a href="https://github.com/Matthew-Eucaristo/s1" target="_blank" rel="noreferrer">GitHub</a>
-        <a href="https://github.com/Matthew-Eucaristo/s1/blob/main/ATTRIBUTIONS.md" target="_blank" rel="noreferrer">Attributions</a>
-        <a href="https://github.com/Matthew-Eucaristo/s1/blob/main/CHANGELOG.md" target="_blank" rel="noreferrer">Changelog</a>
-        <span className="right">voice-first · local-capable · mit</span>
+    <footer className="foot">
+      <div className="wrap foot-inner">
+        <a className="foot-brand" href="#top"><img src="./icon.png" alt="" width="20" height="20" loading="lazy" />s1</a>
+        <nav aria-label="Footer">
+          <a href={REPO} target="_blank" rel="noreferrer">GitHub</a>
+          <a href={`${REPO}/blob/main/CHANGELOG.md`} target="_blank" rel="noreferrer">Changelog</a>
+          <a href={`${REPO}/blob/main/SECURITY.md`} target="_blank" rel="noreferrer">Security</a>
+          <a href={`${REPO}/blob/main/ATTRIBUTIONS.md`} target="_blank" rel="noreferrer">Credits</a>
+          <a href="./llms.txt">llms.txt</a>
+        </nav>
+        <p className="foot-legal">
+          MIT licensed. Made by Matthew Eucaristo. Provider names and logos belong to their owners.
+          Not affiliated with Apple.
+        </p>
       </div>
     </footer>
   )

@@ -1,0 +1,80 @@
+# s1: the open-source voice agent for macOS
+
+Website: https://s1-mac.pages.dev/
+Source: https://github.com/Matthew-Eucaristo/s1 (MIT)
+Author: Matthew Eucaristo
+Requires: macOS 26 or later, Apple silicon
+
+## What it is
+
+s1 is a voice-first agent for the Mac. Double-tap Shift anywhere (or press Control-Option-Space), say what you want done, and s1 does it in your apps while showing every step. A status pill drops from the camera notch while it listens or works, and you can interrupt it at any time by talking over it.
+
+It thinks at two speeds:
+
+- System 1 is a deterministic grammar that turns everyday commands into steps and runs them instantly with no model: opening apps, typing, keyboard shortcuts, window and tab control, media keys, clicking things by name. It understands English and Indonesian.
+- An optional judge (a System One API decision model) checks each System 1 step against the goal and can only lower confidence, never act on its own.
+- System 2 is an optional reasoning LLM. When the grammar doesn't know a step or confidence is low, the step escalates to it with the screen state and the run so far. It plans, answers questions, or hands plain sub-goals back to System 1.
+
+A safety gate classifies every action (read, reversible, irreversible). Credentials, typing into password fields, purchases and irreversible actions always stop and wait for the user.
+
+## Models and providers
+
+s1 uses one model per job, and every job is optional:
+
+| Role | Job | Default when unset |
+|---|---|---|
+| judge | System 1 decision model, checks every step | off (grammar only) |
+| reasoner | System 2 LLM for anything new | off |
+| transcribe | cloud speech-to-text | on-device Apple speech |
+| speak | cloud text-to-speech | Apple voices |
+
+Providers: TypeSafe (Jev judge), OpenCode Go (DeepSeek V4.1 Flash reasoner), OpenAI, OpenRouter (every major model, Claude included), Groq, Google Gemini, xAI, DeepSeek, Liquid AI (d1 judge), Cloudflare Workers AI (Clef judges, Llama), Ollama and LM Studio (local), and any OpenAI-compatible server. A provider is one account or server with one API key, stored in the macOS Keychain. Connecting a provider fills an empty judge or reasoner with its recommended model; voices stay on-device until chosen.
+
+Seeing the screen is a capability, not a separate model. If the judge can read images it receives screenshots; otherwise the reasoner receives one with each step it takes over; if neither can, s1 works from the macOS accessibility tree only. A single "Let models see the screen" switch disables screenshots entirely.
+
+## Features
+
+- Voice from anywhere: Shift-Shift or Control-Option-Space wakes the listener; idle uses no microphone and no CPU.
+- Talk over it: barge-in stops a run or a spoken reply, then listens for the next command.
+- History: every run is saved with its steps, which brain decided each one and why, the safety verdict, and screenshots. The app's sidebar searches them.
+- Launcher (Option-Space): apps, files, snippets, calculator, unit and currency conversion, window layouts, and "ask s1".
+- Dictation (Control-Option-D): hold, speak, release; the text is pasted where you were typing.
+- Memory and skills: "remember that my editor is Zed" and "save that as a skill called morning setup" are plain files in ~/.s1.
+- Siri and Shortcuts: "Ask s1 to ..." and "Wake s1" via App Intents.
+- Languages: on-device speech recognition in 14 languages.
+
+## Install
+
+    brew tap Matthew-Eucaristo/tap
+    brew trust Matthew-Eucaristo/tap
+    brew install --cask s1
+
+Or download S1.app from https://github.com/Matthew-Eucaristo/s1/releases/latest. The `s1` command-line tool ships inside the app and is linked onto PATH by Homebrew. Only the Accessibility permission is required.
+
+## Command line
+
+- `s1 run --goal "open Notes"`: run a command (`--dry-run` touches nothing)
+- `s1 listen`, `s1 serve`: one voice command; the always-on listener (`--install` for launchd)
+- `s1 providers`, `s1 connect <provider>`, `s1 disconnect <provider>`: manage providers
+- `s1 use <role> <provider/model|off>`: assign a model to judge, reasoner, transcribe or speak
+- `s1 models`, `s1 pull <model>`: see choices; download an Ollama model
+- `s1 config`, `s1 doctor`: show the resolved setup; validate every file in ~/.s1
+- `s1 status`, `s1 stop`, `s1 clean`: listener state, stop everything, delete run history
+- `s1 metrics`, `s1 replay`: inspect or re-run a recorded run
+
+Environment overrides: `S1_<ROLE>=provider/model|off` (for example `S1_REASONER`), `S1_<PROVIDER>_KEY` (for example `S1_GROQ_KEY`), `S1_VISION=off`.
+
+## Privacy
+
+Speech recognition runs on the Mac. Audio leaves only if you choose a cloud transcription model; screenshots leave only for models that can read them and only while screen sharing is on. API keys live in the Keychain, never in files. There is no telemetry. Everything s1 stores is a plain file under ~/.s1.
+
+## FAQ
+
+Q: Do I need an AI model or API key?
+A: No. The grammar handles everyday commands without any model. Add a judge or reasoner when you want them.
+
+Q: Is it safe?
+A: Every action passes a safety gate first, and password fields, credentials, purchases and irreversible actions wait for you. The judge can only add caution.
+
+Q: Does it work offline?
+A: The grammar, on-device speech and local models (Ollama, LM Studio) work without internet.

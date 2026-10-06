@@ -1,33 +1,38 @@
-import { useEffect, useRef, useState } from 'react'
-import { motion, useScroll, useSpring } from 'framer-motion'
+import { useState } from 'react'
+import { motion, useMotionValueEvent, useScroll, useSpring } from 'framer-motion'
+import { GithubLogo } from '@phosphor-icons/react'
+import { REPO } from '../content.js'
+
+const LINKS = [
+  ['How it works', '#how'],
+  ['Features', '#features'],
+  ['Models', '#models'],
+  ['Privacy', '#privacy'],
+  ['FAQ', '#faq'],
+]
 
 export default function Nav() {
-  const [scrolled, setScrolled] = useState(false)
-  const { scrollYProgress } = useScroll()
-  const progress = useSpring(scrollYProgress, { stiffness: 140, damping: 28 })
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 30)
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+  const { scrollY, scrollYProgress } = useScroll()
+  const [solid, setSolid] = useState(false)
+  useMotionValueEvent(scrollY, 'change', (y) => setSolid(y > 24))
+  const progress = useSpring(scrollYProgress, { stiffness: 180, damping: 32 })
 
   return (
-    <nav className={`nav ${scrolled ? 'scrolled' : ''}`}>
-      <div className="wrap nav-inner">
-        <a href="#top" className="nav-logo"><span className="dot" />s1</a>
-        <div className="nav-links">
-          <a href="#how">How it works</a>
-          <a href="#features">Features</a>
-          <a href="#config">Config</a>
-          <a href="#oss">Open source</a>
-        </div>
-        <a className="nav-cta" href="https://github.com/Matthew-Eucaristo/s1" target="_blank" rel="noreferrer">
-          github ↗
+    <header className="nav">
+      <nav className={`nav-pill glass ${solid ? 'is-solid' : ''}`} aria-label="Main">
+        <a href="#top" className="nav-brand" aria-label="s1 home">
+          <img src="./icon.png" alt="" width="24" height="24" />
+          <span>s1</span>
         </a>
-      </div>
-      <motion.div className="nav-progress" style={{ scaleX: progress, transformOrigin: '0 50%' }} />
-    </nav>
+        <div className="nav-links">
+          {LINKS.map(([label, href]) => <a key={href} href={href}>{label}</a>)}
+        </div>
+        <a className="nav-icon" href={REPO} target="_blank" rel="noreferrer" aria-label="s1 on GitHub">
+          <GithubLogo size={18} weight="regular" />
+        </a>
+        <a className="btn btn-accent btn-sm" href="#install">Download</a>
+        <motion.span className="nav-progress" style={{ scaleX: progress }} aria-hidden="true" />
+      </nav>
+    </header>
   )
 }
