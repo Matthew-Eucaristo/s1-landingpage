@@ -41,6 +41,7 @@ Web search follows the Reasoner: models that search by themselves (Groq Compound
 - History: every run is saved with its steps, which brain decided each one and why, the safety verdict, and screenshots. The app's sidebar searches them.
 - Launcher (Option-Space): apps, files, snippets, calculator, unit and currency conversion, window layouts, and "ask s1".
 - Dictation (Control-Option-D): hold, speak, release; the text is pasted where you were typing.
+- Hands-free dictation: say "start dictating" and everything you say is typed into the focused field, no keys, until "stop dictating", "stop", Shift-Shift or Esc. Password fields are never typed into.
 - Memory and skills: "remember that my editor is Zed" and "save that as a skill called morning setup" are plain files in ~/.s1.
 - Siri and Shortcuts: "Ask s1 to ..." and "Wake s1" via App Intents.
 - Languages: on-device speech recognition in 14 languages.
